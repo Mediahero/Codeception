@@ -23,7 +23,7 @@ class FileSystem
                 rmdir($dir);
             } else {
                 $file = (string)$path;
-                if (basename($file) === '.gitignore') {
+                if (basename($file) === '.gitignore' || basename($file) === '.cvsignore') {
                     continue;
                 }
                 unlink($path->__toString());
