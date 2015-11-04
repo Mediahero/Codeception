@@ -14,6 +14,15 @@ class Page extends \PHPUnit_Framework_Constraint_StringContains
         $this->ignoreCase = true;
     }
 
+    protected function matches($other)
+    {
+        if ($this->ignoreCase) {
+            return mb_stripos($other, $this->string, 0, mb_detect_encoding($this->string)) !== FALSE;
+        } else {
+            return mb_strpos($other, $this->string, 0, mb_detect_encoding($this->string)) !== FALSE;
+        }
+    }
+
     protected function failureDescription($other)
     {
         $page = substr($other,0,300);
